@@ -25,6 +25,9 @@ jobs:
       - name: Create Build File
         run: |
           echo "Build Complete" > build.txt
+        
+      - name: Show Host
+        run: hostname
 
   Testing:
     runs-on: ubuntu-latest
@@ -45,3 +48,6 @@ jobs:
       
       - name: Read Build File
         run: cat build.txt
+
+      - name: Show Host
+        run: hostname
