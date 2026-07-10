@@ -32,9 +32,12 @@ jobs:
       - name: Verify AWS Login
         run: aws sts get-caller-identity
 
-      - name: Create EC2 Instance
+      - name: Create EC2
         run: |
-          aws ec2 run-instances \
+          INSTANCE_ID=$(aws ec2 run-instances \
             --image-id ami-002192a70217ac181 \
             --instance-type t2.micro \
-            --count 1
+            --query 'Instances[0].InstanceId' \
+            --output text)
+
+            echo "Instance ID: $INSTANCE_ID"
