@@ -19,7 +19,7 @@ on:
         - name: Code Checkout
           uses: actions/checkout@v4
 
-        - name: Maven Test runs on main branches
+        - name: Maven Test runs on main branche
           run: mvn test
 
         -name: checkstyle
