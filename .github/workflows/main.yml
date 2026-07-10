@@ -1,31 +1,29 @@
 name: Build MF
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  Build:
-    runs-on: ubuntu-latest
+    Build:
+      runs-on: ubuntu-latest
+      
+      steps:
+        - name: Code Checkouts
+          uses: actions/checkout@v4
 
-    steps:
-      - name: Code Checkout
-        uses: actions/checkout@v4
+        - name: Maven Build
+          run: mvn install
+        
+    Testing:
+      runs-on: ubuntu-latest
+      needs: Build
+      steps:
+        - name: Code Checkout
+          uses: actions/checkout@v4
 
-      - name: Maven Build
-        run: mvn install
+        - name: Maven Test runs on main branche
+          run: mvn test
 
-  Testing:
-    runs-on: ubuntu-latest
-    needs: Build
-
-    steps:
-      - name: Code Checkout
-        uses: actions/checkout@v4
-
-      - name: Maven Test
-        run: mvn test
-
-      - name: Checkstyle
-        run: mvn checkstyle:checkstyle
+        - name: checkstyle
+          run: mvn checkstyle:checkstyle
