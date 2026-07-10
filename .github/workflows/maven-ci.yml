@@ -45,9 +45,11 @@ jobs:
 
       - name: Execute Tests
         run: mvn test
+
+      - name: Show Host
+        run: hostname
       
       - name: Read Build File
         run: cat build.txt
 
-      - name: Show Host
-        run: hostname
+      
