@@ -22,12 +22,16 @@ jobs:
       - name: Build Application
         run: mvn clean install
 
-      - name: Create Build File
+      - name: Create File
         run: |
-          echo "Build Complete" > build.txt
+          echo "hello" > build.txt
+          ls -la
         
-      - name: Show Host
-        run: hostname
+      - name: Show Workspace
+        run: |
+          hostname
+          pwd
+          echo $GITHUB_WORKSPACE
 
   Testing:
     runs-on: ubuntu-latest
@@ -46,10 +50,14 @@ jobs:
       - name: Execute Tests
         run: mvn test
 
-      - name: Show Host
-        run: hostname
+      - name: Show Workspace
+        run: |
+          hostname
+          pwd
+          echo $GITHUB_WORKSPACE
       
-      - name: Read Build File
-        run: cat build.txt
+      - name: List Files
+        run: |
+          ls -la
 
       
